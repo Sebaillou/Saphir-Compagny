@@ -72,7 +72,28 @@ async function getRanking() {
       ...item
     }));
 }
+app.get("/api/classement", async (req, res) => {
+  try {
+    const classement = await getRanking();
 
+    res.json({
+      updatedAt: new Date().toISOString(),
+      totalClients: classement.length,
+      totalSaphirs: classement.reduce(
+        (sum, joueur) => sum + joueur.saphirs,
+        0
+      ),
+      classement,
+    });
+  } catch (error) {
+    console.error("Erreur classement :", error);
+
+    res.status(500).json({
+      error: "Impossible de récupérer le classement.",
+      details: error.message,
+    });
+  }
+});
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
