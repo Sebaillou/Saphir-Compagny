@@ -33,7 +33,7 @@ async function getRanking() {
   // On commence à la ligne 2 pour ignorer les titres
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
-    range: `'${SHEET_NAME}'!C2:D`,
+    range: `'${SHEET_NAME}'!D2:E`,
   });
 
   const rows = response.data.values || [];
