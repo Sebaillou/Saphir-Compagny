@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Saphir</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div>
+        <p class="eyebrow">CLASSEMENT OFFICIEL</p>
+        <h1>💎 Top Saphir</h1>
+        <p class="subtitle">Classement calculé automatiquement depuis les achats.</p>
+      </div>
+      <button id="refresh">Actualiser</button>
+    </header>
+
+    <section class="stats">
+      <article><span>Clients</span><strong id="totalClients">—</strong></article>
+      <article><span>Saphirs comptabilisés</span><strong id="totalSaphirs">—</strong></article>
+      <article><span>Dernière mise à jour</span><strong id="updatedAt">—</strong></article>
+    </section>
+
+    <section id="podium" class="podium"></section>
+
+    <section class="ranking">
+      <div class="toolbar">
+        <h2>Classement complet</h2>
+        <input id="search" type="search" placeholder="Rechercher un client…">
+      </div>
+      <div id="error" class="error" hidden></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rang</th><th>Client</th><th>Saphirs</th></tr></thead>
+          <tbody id="rankingBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="/script.js"></script>
+</body>
+</html>
