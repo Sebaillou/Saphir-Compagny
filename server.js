@@ -21,61 +21,57 @@ async function getRanking() {
     credentials: getCredentials(),
     scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
   });
-  const sheets = google.sheets({ version: "v4", auth });
+
+  const sheets = google.sheets({
+    version: "v4",
+    auth
+  });
+
+  // Lecture directe :
+  // Colonne C = Client
+  // Colonne D = Nombre de Saphir
+  // On commence à la ligne 2 pour ignorer les titres
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
-    range: `'${SHEET_NAME}'`,
+    range: `'${SHEET_NAME}'!C2:D`,
   });
 
   const rows = response.data.values || [];
-  if (!rows.length) return [];
-
-  const headers = rows[0].map(h => String(h).trim());
-  const clientIndex = headers.findIndex(h => h.toLowerCase() === "client");
-  const sapphireIndex = headers.findIndex(h => h.toLowerCase() === "nombre de saphir");
-
-  if (clientIndex === -1 || sapphireIndex === -1) {
-    throw new Error(`Colonnes introuvables. Colonnes disponibles : ${headers.join(", ")}`);
-  }
-
   const totals = new Map();
 
-  for (const row of rows.slice(1)) {
-    const client = String(row[clientIndex] || "").trim();
-    if (!client) continue;
+  for (const row of rows) {
+    const client = String(row[0] || "").trim();
 
-    const raw = String(row[sapphireIndex] || "0")
+    const raw = String(row[1] || "0")
       .replace(/\s/g, "")
       .replace(",", ".");
+
     const amount = Number(raw);
-    if (!Number.isFinite(amount)) continue;
 
-    totals.set(client, (totals.get(client) || 0) + amount);
+    // Ignore les lignes vides ou incorrectes
+    if (!client || !Number.isFinite(amount)) {
+      continue;
+    }
+
+    // Additionne les saphirs si le client apparaît plusieurs fois
+    totals.set(
+      client,
+      (totals.get(client) || 0) + amount
+    );
   }
 
+  // Création du classement
   return [...totals.entries()]
-    .map(([client, saphirs]) => ({ client, saphirs }))
+    .map(([client, saphirs]) => ({
+      client,
+      saphirs
+    }))
     .sort((a, b) => b.saphirs - a.saphirs)
-    .map((item, index) => ({ rang: index + 1, ...item }));
+    .map((item, index) => ({
+      rang: index + 1,
+      ...item
+    }));
 }
-
-app.get("/api/classement", async (req, res) => {
-  try {
-    const classement = await getRanking();
-    res.json({
-      updatedAt: new Date().toISOString(),
-      totalClients: classement.length,
-      totalSaphirs: classement.reduce((sum, x) => sum + x.saphirs, 0),
-      classement,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      error: "Impossible de récupérer le classement.",
-      details: process.env.NODE_ENV === "production" ? undefined : error.message,
-    });
-  }
-});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
