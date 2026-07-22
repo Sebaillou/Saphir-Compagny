@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID || "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI";
 const SHEET_NAME = process.env.SHEET_NAME || "achat de saphir";
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(__dirname));
 
 function getCredentials() {
   if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
@@ -78,7 +78,7 @@ app.get("/api/classement", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(PORT, () => console.log(`Top Saphir disponible sur le port ${PORT}`));
