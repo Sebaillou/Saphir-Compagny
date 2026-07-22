@@ -4,7 +4,7 @@ const formatNumber = value =>
   new Intl.NumberFormat("fr-FR").format(value || 0);
 
 const formatMoney = value =>
-  `${new Intl.NumberFormat("fr-FR").format(value || 0)} $`;
+  `${new Intl.NumberFormat("fr-FR").format(value || 0)} €`;
 
 
 function renderPodium(data) {
