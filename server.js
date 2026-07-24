@@ -9,10 +9,6 @@ const SPREADSHEET_ID =
   process.env.SPREADSHEET_ID ||
   "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI";
 
-const SPREADSHEET_ID =
-  process.env.SPREADSHEET_ID ||
-  "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI";
-
 const SHEET_NAME =
   process.env.SHEET_NAME ||
   "achat de saphir";
