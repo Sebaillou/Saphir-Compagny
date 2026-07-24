@@ -81,6 +81,70 @@ function escapeHtml(value) {
 
 
 async function loadRanking() {
+  async function getTotalSaphirsGlobaux() {
+
+  const auth = new google.auth.GoogleAuth({
+    credentials: getCredentials(),
+    scopes: [
+      "https://www.googleapis.com/auth/spreadsheets.readonly"
+    ]
+  });
+
+  const sheets = google.sheets({
+    version: "v4",
+    auth
+  });
+
+  const totalParClient = new Map();
+
+  for (const fichier of GLOBAL_SPREADSHEETS) {
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: fichier.id,
+      range: `'${fichier.sheet}'`
+    });
+
+    const rows = response.data.values || [];
+
+    if (!rows.length) continue;
+
+    const headerIndex = rows.findIndex(row =>
+      row.some(cell =>
+        String(cell).trim().toLowerCase() === "client"
+      )
+    );
+
+    if (headerIndex === -1) continue;
+
+    const headers = rows[headerIndex].map(cell =>
+      String(cell).trim().toLowerCase()
+    );
+
+    const clientIndex = headers.indexOf("client");
+    const saphirIndex = headers.indexOf("nombre de saphir");
+
+    if (clientIndex === -1 || saphirIndex === -1)
+      continue;
+
+    for (const row of rows.slice(headerIndex + 1)) {
+
+      const client = String(row[clientIndex] || "").trim();
+
+      if (!client) continue;
+
+      const saphirs = parseNumber(row[saphirIndex]);
+
+      totalParClient.set(
+        client,
+        (totalParClient.get(client) || 0) + saphirs
+      );
+    }
+  }
+
+  return [...totalParClient.values()]
+    .reduce((a, b) => a + b, 0);
+
+}
 
   const error =
     document.querySelector("#error");
