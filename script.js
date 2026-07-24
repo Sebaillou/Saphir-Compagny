@@ -53,13 +53,17 @@ function renderTable(data) {
           ${escapeHtml(x.client)}
         </td>
 
-        <td>
-          ${formatNumber(x.saphirs)} 🔷
-        </td>
+       <td>
+  ${formatNumber(x.saphirs)} 🔷
+</td>
 
-        <td>
-          ${formatMoney(x.argentClient)}
-        </td>
+<td>
+  ${formatNumber(x.saphirsGlobaux)} 🔷
+</td>
+
+<td>
+  ${formatMoney(x.argentClient)}
+</td>
 
       </tr>
 
@@ -124,13 +128,7 @@ async function loadRanking() {
         formatNumber(
           data.totalClients
         );
-const totalSaphirsGlobauxElement =
-  document.querySelector("#totalSaphirsGlobaux");
 
-if (totalSaphirsGlobauxElement) {
-  totalSaphirsGlobauxElement.textContent =
-    formatNumber(data.totalSaphirsGlobaux);
-}
 
     // Nombre total de saphirs
     document
