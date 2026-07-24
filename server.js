@@ -13,16 +13,57 @@ const SHEET_NAME =
   process.env.SHEET_NAME ||
   "achat de saphir";
 
-const GLOBAL_SPREADSHEETS = [
-  {
-    id: "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI",
-    sheet: "achat de saphir"
-  },
-  {
-    id: "1RzPS2jjtOB-2rFd_pgKjIkSQSJm4EEKLoid9vmr9fWU",
-    sheet: "Achat de Saphir"
+async function getSecondSheetSaphirs() {
+
+  const auth = new google.auth.GoogleAuth({
+    credentials: getCredentials(),
+    scopes: [
+      "https://www.googleapis.com/auth/spreadsheets.readonly"
+    ]
+  });
+
+  const sheets = google.sheets({
+    version: "v4",
+    auth
+  });
+
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: "1RzPS2jjtOB-2rFd_pgKjIkSQSJm4EEKLoid9vmr9fWU",
+    range: "'Achat de Saphir'"
+  });
+
+  const rows = response.data.values || [];
+
+  const headerIndex = rows.findIndex(row =>
+    row.some(cell =>
+      String(cell).trim().toLowerCase() === "client"
+    )
+  );
+
+  if (headerIndex === -1) return new Map();
+
+  const headers = rows[headerIndex].map(cell =>
+    String(cell).trim().toLowerCase()
+  );
+
+  const clientIndex = headers.indexOf("client");
+  const saphirIndex = headers.indexOf("nombre de saphir");
+
+  const map = new Map();
+
+  for (const row of rows.slice(headerIndex + 1)) {
+
+    const client = String(row[clientIndex] || "").trim();
+
+    if (!client) continue;
+
+    const saphirs = parseNumber(row[saphirIndex]);
+
+    map.set(client, (map.get(client) || 0) + saphirs);
   }
-];
+
+  return map;
+}
 
 app.use(express.static(__dirname));
 
@@ -294,68 +335,11 @@ async function getRanking() {
     );
 
 }
-async function getTotalSaphirsGlobaux() {
 
-  const auth = new google.auth.GoogleAuth({
-    credentials: getCredentials(),
-    scopes: [
-      "https://www.googleapis.com/auth/spreadsheets.readonly"
-    ]
-  });
 
-  const sheets = google.sheets({
-    version: "v4",
-    auth
-  });
 
-  const totalParClient = new Map();
 
-  for (const fichier of GLOBAL_SPREADSHEETS) {
-
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: fichier.id,
-      range: `'${fichier.sheet}'`
-    });
-
-    const rows = response.data.values || [];
-
-    if (!rows.length) continue;
-
-    const headerIndex = rows.findIndex(row =>
-      row.some(cell =>
-        String(cell).trim().toLowerCase() === "client"
-      )
-    );
-
-    if (headerIndex === -1) continue;
-
-    const headers = rows[headerIndex].map(cell =>
-      String(cell).trim().toLowerCase()
-    );
-
-    const clientIndex = headers.indexOf("client");
-    const saphirIndex = headers.indexOf("nombre de saphir");
-
-    if (clientIndex === -1 || saphirIndex === -1) continue;
-
-    for (const row of rows.slice(headerIndex + 1)) {
-
-      const client = String(row[clientIndex] || "").trim();
-
-      if (!client) continue;
-
-      const saphirs = parseNumber(row[saphirIndex]);
-
-      totalParClient.set(
-        client,
-        (totalParClient.get(client) || 0) + saphirs
-      );
-    }
-  }
-
-  return [...totalParClient.values()]
-    .reduce((total, valeur) => total + valeur, 0);
-}
+  
 
 // API du classement
 app.get(
@@ -365,11 +349,16 @@ app.get(
 
     try {
 
-      const classement =
-        await getRanking();
+      const classement = await getRanking();
 
-      const totalSaphirsGlobaux =
-        await getTotalSaphirsGlobaux();
+const secondSheet = await getSecondSheetSaphirs();
+
+const classementAvecGlobal = classement.map(joueur => ({
+  ...joueur,
+  saphirsGlobaux:
+    joueur.saphirs +
+    (secondSheet.get(joueur.client) || 0)
+}));
 
       res.json({
 
@@ -386,7 +375,7 @@ app.get(
             0
           ),
 
-        totalSaphirsGlobaux,
+        
 
         totalArgentClient:
           classement.reduce(
@@ -395,7 +384,7 @@ app.get(
             0
           ),
 
-        classement
+        classement: classementAvecGlobal
 
       });
 
