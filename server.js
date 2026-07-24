@@ -9,8 +9,15 @@ const SPREADSHEET_ID =
   process.env.SPREADSHEET_ID ||
   "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI";
 
+const SPREADSHEET_ID =
+  process.env.SPREADSHEET_ID ||
+  "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI";
+
 const SHEET_NAME =
-  const GLOBAL_SPREADSHEETS = [
+  process.env.SHEET_NAME ||
+  "achat de saphir";
+
+const GLOBAL_SPREADSHEETS = [
   {
     id: "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI",
     sheet: "achat de saphir"
@@ -20,8 +27,6 @@ const SHEET_NAME =
     sheet: "Achat de Saphir"
   }
 ];
-  process.env.SHEET_NAME ||
-  "achat de saphir";
 
 app.use(express.static(__dirname));
 
