@@ -10,6 +10,16 @@ const SPREADSHEET_ID =
   "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI";
 
 const SHEET_NAME =
+  const GLOBAL_SPREADSHEETS = [
+  {
+    id: "1G5zrFDupHKhrFrhdDPL93g0QKs3EI0BkdXipHSVNHuI",
+    sheet: "achat de saphir"
+  },
+  {
+    id: "1RzPS2jjtOB-2rFd_pgKjIkSQSJm4EEKLoid9vmr9fWU",
+    sheet: "Achat de Saphir"
+  }
+];
   process.env.SHEET_NAME ||
   "achat de saphir";
 
