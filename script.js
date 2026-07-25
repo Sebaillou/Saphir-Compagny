@@ -57,9 +57,7 @@ function renderTable(data) {
   ${formatNumber(x.saphirs)} 🔷
 </td>
 
-<td>
-  ${formatNumber(x.saphirsGlobaux)} 🔷
-</td>
+
 
 <td>
   ${formatMoney(x.argentClient)}
