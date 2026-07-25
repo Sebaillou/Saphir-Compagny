@@ -13,7 +13,7 @@ const SHEET_NAME =
   process.env.SHEET_NAME ||
   "achat de saphir";
 
-async function getSecondSheetSaphirs() {
+async function getSecondSheetData() {
 
   const auth = new google.auth.GoogleAuth({
     credentials: getCredentials(),
@@ -42,12 +42,13 @@ async function getSecondSheetSaphirs() {
 
   if (headerIndex === -1) return new Map();
 
-  const headers = rows[headerIndex].map(cell =>
-    String(cell).trim().toLowerCase()
+  const headers = rows[headerIndex].map(c =>
+    String(c).trim().toLowerCase()
   );
 
   const clientIndex = headers.indexOf("client");
   const saphirIndex = headers.indexOf("nombre de saphir");
+  const argentIndex = headers.indexOf("argent pour le client");
 
   const map = new Map();
 
@@ -57,9 +58,19 @@ async function getSecondSheetSaphirs() {
 
     if (!client) continue;
 
-    const saphirs = parseNumber(row[saphirIndex]);
+    if (!map.has(client)) {
 
-    map.set(client, (map.get(client) || 0) + saphirs);
+      map.set(client, {
+        saphirs: 0,
+        argent: 0
+      });
+
+    }
+
+    const total = map.get(client);
+
+    total.saphirs += parseNumber(row[saphirIndex]);
+    total.argent += parseNumber(row[argentIndex]);
   }
 
   return map;
