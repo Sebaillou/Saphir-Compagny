@@ -321,3 +321,33 @@ tbody tr:hover {
     white-space: nowrap;
   }
 }
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;          /* espace entre les deux boutons */
+    flex: 1;            /* occupe l'espace disponible */
+    margin: 0 40px;
+}
+
+.menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    padding: 12px 22px;
+    background: #11172d;
+    border: 1px solid #303a65;
+    border-radius: 14px;
+    color: #f5f7ff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all .25s ease;
+}
+
+.menu-btn:hover {
+    background: #1c2548;
+    border-color: #7588ff;
+    transform: translateY(-2px);
+}
