@@ -1,1 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Saphirs Globaux</title>
+
+<link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<main class="container">
+
+<header>
+
+<div>
+
+<p class="eyebrow">
+CLASSEMENT OFFICIEL
+</p>
+
+<h1>🌍 Saphirs Globaux</h1>
+
+<p class="subtitle">
+Classement des intérimaires sur les deux fichiers.
+</p>
+
+</div>
+
+<div style="display:flex;gap:10px;">
+
+<a href="/" class="button">
+🏆 Classement
+</a>
+
+<button id="refresh">
+Actualiser
+</button>
+
+</div>
+
+</header>
+
+<section class="stats">
+
+<article>
+<span>Nombre d'intérimaires</span>
+<strong id="totalClients">—</strong>
+</article>
+
+<article>
+<span>Total Saphirs Globaux</span>
+<strong id="totalSaphirs">—</strong>
+</article>
+
+<article>
+<span>Dernière mise à jour</span>
+<strong id="updatedAt">—</strong>
+</article>
+
+</section>
+
+<section class="ranking">
+
+<div class="toolbar">
+
+<h2>
+Classement Global
+</h2>
+
+<input
+id="search"
+type="search"
+placeholder="Rechercher un intérimaire..."
+>
+
+</div>
+
+<div id="error" class="error" hidden></div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Rang</th>
+<th>Intérimaire</th>
+<th>Saphirs Globaux</th>
+<th>Argent</th>
+
+</tr>
+
+</thead>
+
+<tbody id="rankingBody"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="/globaux.js"></script>
+
+</body>
+</html>
