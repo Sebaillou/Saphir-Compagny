@@ -353,76 +353,126 @@ async function getRanking() {
   
 
 // API du classement
-app.get(
-  "/api/classement",
+// API du classement
+app.get("/api/classement", async (req, res) => {
 
-  async (req, res) => {
+  try {
 
-    try {
+    const classement = await getRanking();
 
-      const classement = await getRanking();
+    res.json({
 
-const secondSheet = await getSecondSheetSaphirs();
+      updatedAt: new Date().toISOString(),
 
-const classementAvecGlobal = classement.map(joueur => ({
-  ...joueur,
-  saphirsGlobaux:
-    joueur.saphirs +
-    (secondSheet.get(joueur.client) || 0)
-}));
+      totalClients: classement.length,
 
-      res.json({
+      totalSaphirs: classement.reduce(
+        (sum, joueur) => sum + joueur.saphirs,
+        0
+      ),
 
-        updatedAt:
-          new Date().toISOString(),
+      totalArgentClient: classement.reduce(
+        (sum, joueur) => sum + joueur.argentClient,
+        0
+      ),
 
-        totalClients:
-          classement.length,
+      classement
 
-        totalSaphirs:
-          classement.reduce(
-            (sum, joueur) =>
-              sum + joueur.saphirs,
-            0
-          ),
+    });
 
-        
+  } catch (error) {
 
-        totalArgentClient:
-          classement.reduce(
-            (sum, joueur) =>
-              sum + joueur.argentClient,
-            0
-          ),
+    console.error("Erreur classement :", error);
 
-        classement: classementAvecGlobal
+    res.status(500).json({
+      error: "Impossible de récupérer le classement.",
+      details: error.message
+    });
 
+  }
+
+});
+
+app.get("/api/classement-global", async (req, res) => {
+
+  try {
+
+    const classement = await getRanking();
+    const second = await getSecondSheetData();
+
+    const joueurs = new Map();
+
+    // Données du premier document
+    for (const joueur of classement) {
+
+      joueurs.set(joueur.client, {
+        client: joueur.client,
+        saphirsGlobaux: joueur.saphirs,
+        argentGlobal: joueur.argentClient
       });
-
-    } catch (error) {
-
-      console.error(
-        "Erreur classement :",
-        error
-      );
-
-      res
-        .status(500)
-        .json({
-
-          error:
-            "Impossible de récupérer le classement.",
-
-          details:
-            error.message
-
-        });
 
     }
 
-  }
-);
+    // Fusion avec le deuxième document
+    for (const [client, valeurs] of second.entries()) {
 
+      if (!joueurs.has(client)) {
+
+        joueurs.set(client, {
+          client,
+          saphirsGlobaux: 0,
+          argentGlobal: 0
+        });
+
+      }
+
+      const j = joueurs.get(client);
+
+      j.saphirsGlobaux += valeurs.saphirs;
+      j.argentGlobal += valeurs.argent;
+
+    }
+
+    const classementGlobal = [...joueurs.values()]
+      .sort((a, b) => b.saphirsGlobaux - a.saphirsGlobaux)
+      .map((j, index) => ({
+        rang: index + 1,
+        ...j
+      }));
+
+    res.json({
+
+      updatedAt: new Date().toISOString(),
+
+      totalClients: classementGlobal.length,
+
+      totalSaphirs: classementGlobal.reduce(
+        (sum, j) => sum + j.saphirsGlobaux,
+        0
+      ),
+
+      totalArgentClient: classementGlobal.reduce(
+        (sum, j) => sum + j.argentGlobal,
+        0
+      ),
+
+      classement: classementGlobal
+
+    });
+
+  } catch (error) {
+
+    console.error("Erreur classement global :", error);
+
+    res.status(500).json({
+      error: "Impossible de récupérer le classement global.",
+      details: error.message
+    });
+
+  }
+
+});
+  
 // Affichage du site
 app.get(
   "*",
