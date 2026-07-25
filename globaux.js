@@ -29,7 +29,7 @@ function renderTable(data) {
 
 <td>${formatNumber(x.saphirsGlobaux)} 🔷</td>
 
-<td>${formatMoney(x.argentClient)}</td>
+<td>${formatMoney(x.argentGlobal)}</td>
 
 </tr>
 
@@ -40,7 +40,7 @@ function renderTable(data) {
 async function loadRanking(){
 
   const response =
-    await fetch("/api/classement");
+    await fetch("/api/classement-global");
 
   const data =
     await response.json();
