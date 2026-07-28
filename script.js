@@ -76,44 +76,26 @@ function renderTable(data) {
 
       <tr>
 
-        <td>
-          #${x.rang}
+        <td>#${x.rang}</td>
+
+        <td>${escapeHtml(x.client)}</td>
+
+        <td>${formatNumber(x.saphirs)} 🔷</td>
+
+        <td>${formatMoney(x.argentClient)}</td>
+
+        <td class="grade-cell">
+          ${
+            getRankBadge(x.saphirs)
+              ? `<img
+                    src="/images/${getRankBadge(x.saphirs)}.png"
+                    class="grade-badge"
+                    alt="${getRankBadge(x.saphirs)}">`
+              : ""
+          }
         </td>
 
-       <td class="player-name">
-
-  ${escapeHtml(x.client)}
-
-  ${
-    getRankBadge(x.saphirs)
-      ? `<img
-            src="/images/${getRankBadge(x.saphirs)}.png"
-            class="grade-badge"
-            alt="${getRankBadge(x.saphirs)}">`
-      : ""
-  }
-
-<tr>
-
-    <td>#${x.rang}</td>
-
-    <td>${escapeHtml(x.client)}</td>
-
-    <td>${formatNumber(x.saphirs)} 🔷</td>
-
-    <td>${formatMoney(x.argentClient)}</td>
-
-    <td class="grade-cell">
-        ${
-            getRankBadge(x.saphirs)
-                ? `<img src="/images/${getRankBadge(x.saphirs)}.png"
-                       class="grade-badge"
-                       alt="${getRankBadge(x.saphirs)}">`
-                : ""
-        }
-    </td>
-
-</tr>
+      </tr>
 
     `).join("");
 }
