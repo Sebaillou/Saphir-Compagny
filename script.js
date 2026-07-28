@@ -49,9 +49,17 @@ function renderTable(data) {
           #${x.rang}
         </td>
 
-        <td>
-          ${escapeHtml(x.client)}
-        </td>
+       <td class="player-name">
+
+  ${escapeHtml(x.client)}
+
+  ${
+    x.saphirs >= 2000 && x.saphirs <= 4999
+      ? '<img src="/images/bronze.png" class="grade-badge" alt="Bronze">'
+      : ""
+  }
+
+</td>
 
        <td>
   ${formatNumber(x.saphirs)} 🔷
