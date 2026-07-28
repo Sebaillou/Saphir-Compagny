@@ -383,14 +383,14 @@ tbody tr:hover {
 
 /* ===== Grades ===== */
 
-.player-name{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.grade-cell{
+    text-align: center;
+    width: 120px;
 }
 
 .grade-badge{
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+    width: 90px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
