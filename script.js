@@ -93,19 +93,27 @@ function renderTable(data) {
       : ""
   }
 
-</td>
+<tr>
 
-       <td>
-  ${formatNumber(x.saphirs)} 🔷
-</td>
+    <td>#${x.rang}</td>
 
+    <td>${escapeHtml(x.client)}</td>
 
+    <td>${formatNumber(x.saphirs)} 🔷</td>
 
-<td>
-  ${formatMoney(x.argentClient)}
-</td>
+    <td>${formatMoney(x.argentClient)}</td>
 
-      </tr>
+    <td class="grade-cell">
+        ${
+            getRankBadge(x.saphirs)
+                ? `<img src="/images/${getRankBadge(x.saphirs)}.png"
+                       class="grade-badge"
+                       alt="${getRankBadge(x.saphirs)}">`
+                : ""
+        }
+    </td>
+
+</tr>
 
     `).join("");
 }
