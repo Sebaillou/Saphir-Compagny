@@ -1493,4 +1493,11 @@ body{
 
 }
 
+  .menu-btn.active{
+    background:#2d3f88;
+    border-color:#6b8cff;
+    color:#fff;
+    box-shadow:
+        0 0 18px rgba(95,125,255,.35);
 }
+
