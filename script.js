@@ -66,6 +66,9 @@ function getRankBadge(saphirs) {
   if (saphirs >= 2000)
     return "bronze";
 
+  if (saphirs >= 0)
+    return "Non classé";
+  
   return null;
 }
 
