@@ -380,3 +380,17 @@ tbody tr:hover {
     border-color:#7588ff;
     transform:translateY(-2px);
 }
+
+/* ===== Grades ===== */
+
+.player-name{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.grade-badge{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
