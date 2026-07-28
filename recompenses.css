@@ -1,0 +1,1496 @@
+/*======================================================
+                PAGE RECOMPENSES PREMIUM
+======================================================*/
+
+:root{
+
+    --bg:#080b16;
+    --card:#11172d;
+    --card2:#171f3d;
+
+    --border:#2d3d7a;
+
+    --blue:#6b8dff;
+    --blue2:#5a74ff;
+
+    --text:#f5f7ff;
+    --text2:#aab2cc;
+
+    --radius:22px;
+
+}
+
+
+/*==========================
+        FOND
+==========================*/
+
+body{
+
+    overflow-x:hidden;
+
+    background:
+    radial-gradient(circle at top,#1a2558 0%,#080b16 55%);
+
+    position:relative;
+
+}
+
+
+/* halos */
+
+.bg-glow{
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.18;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+.glow-1{
+
+    left:-220px;
+    top:-180px;
+
+    background:#4e74ff;
+
+}
+
+.glow-2{
+
+    right:-250px;
+    bottom:-250px;
+
+    background:#1f8fff;
+
+}
+
+
+/* grille discrète */
+
+.bg-grid{
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:.35;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+}
+
+
+
+/*==========================
+        HEADER
+==========================*/
+
+.reward-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    gap:40px;
+
+    margin-bottom:45px;
+
+}
+
+
+.title-block{
+
+    max-width:650px;
+
+}
+
+
+.reward-header h1{
+
+    margin-top:8px;
+
+    margin-bottom:15px;
+
+    font-size:58px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+
+}
+
+
+.reward-header .subtitle{
+
+    color:var(--text2);
+
+    font-size:18px;
+
+    line-height:1.7;
+
+}
+
+
+.eyebrow{
+
+    color:#8ca4ff;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.30em;
+
+    font-weight:800;
+
+}
+
+
+/*==========================
+       INTRODUCTION
+==========================*/
+
+.reward-intro{
+
+    margin-bottom:40px;
+
+}
+
+.intro-card{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(30,42,84,.95),
+        rgba(17,23,45,.95)
+    );
+
+    border:1px solid rgba(120,145,255,.25);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:
+
+    0 20px 70px rgba(0,0,0,.25);
+
+}
+
+.intro-card h2{
+
+    margin:0;
+
+    font-size:34px;
+
+}
+
+.intro-card p{
+
+    margin-top:18px;
+
+    color:#c5cde4;
+
+    font-size:18px;
+
+    line-height:1.8;
+  /*======================================================
+                    CARTES DES GRADES
+======================================================*/
+
+.reward-grid{
+
+    display:grid;
+
+    gap:24px;
+
+    margin-top:35px;
+
+}
+
+
+.reward-card{
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:140px 1fr 240px;
+
+    align-items:center;
+
+    gap:30px;
+
+    padding:28px 34px;
+
+    border-radius:22px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(25,33,62,.95),
+            rgba(15,21,42,.96)
+        );
+
+    border:1px solid rgba(105,130,255,.20);
+
+    backdrop-filter:blur(18px);
+
+    overflow:hidden;
+
+    transition:all .35s ease;
+
+    box-shadow:
+
+        0 15px 35px rgba(0,0,0,.25);
+
+}
+
+
+/* effet lumineux */
+
+.reward-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120px;
+
+    top:-120px;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(circle,
+            rgba(95,130,255,.22),
+            transparent 70%);
+
+    transition:.35s;
+
+}
+
+
+.reward-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#6d90ff;
+
+    box-shadow:
+
+        0 0 0 1px rgba(120,150,255,.2),
+
+        0 18px 45px rgba(45,80,255,.25);
+
+}
+
+
+.reward-card:hover::before{
+
+    transform:scale(1.25);
+
+    opacity:1;
+
+}
+
+
+/*=========================
+      BADGE
+=========================*/
+
+.reward-left{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.grade-image{
+
+    width:115px;
+
+    height:115px;
+
+    object-fit:contain;
+
+    transition:.35s;
+
+    filter:
+
+        drop-shadow(0 0 15px rgba(255,255,255,.25));
+
+}
+
+
+.reward-card:hover .grade-image{
+
+    transform:
+
+        scale(1.10)
+
+        rotate(-4deg);
+
+}
+
+
+/*=========================
+       TEXTE
+=========================*/
+
+.reward-middle h2{
+
+    margin:0;
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+
+
+.range{
+
+    margin-top:10px;
+
+    color:#9fb2ea;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+
+.description{
+
+    margin-top:14px;
+
+    color:#c9d1ea;
+
+    line-height:1.7;
+
+}
+
+
+/*=========================
+      PRIME
+=========================*/
+
+.reward-right{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+
+.reward-price{
+
+    min-width:180px;
+
+    text-align:center;
+
+    padding:18px 28px;
+
+    border-radius:16px;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #2ca04d,
+            #1c7f3c
+        );
+
+    box-shadow:
+
+        inset 0 1px 0 rgba(255,255,255,.12),
+
+        0 10px 25px rgba(18,140,70,.35);
+
+}
+
+
+/*=========================
+    COULEURS PAR GRADE
+=========================*/
+
+.non-classe{
+
+    border-left:8px solid #6b5435;
+
+}
+
+.non-classe:hover{
+
+    box-shadow:
+        0 0 25px rgba(145,105,60,.25);
+
+}
+
+
+.bronze{
+
+    border-left:8px solid #c67d42;
+
+}
+
+.bronze:hover{
+
+    box-shadow:
+        0 0 30px rgba(198,125,66,.30);
+
+}
+
+
+.argent{
+
+    border-left:8px solid #d8d8d8;
+
+}
+
+.argent:hover{
+
+    box-shadow:
+        0 0 30px rgba(210,210,210,.35);
+
+}
+
+
+.or{
+
+    border-left:8px solid #f2c541;
+
+}
+
+.or:hover{
+
+    box-shadow:
+        0 0 35px rgba(255,215,70,.35);
+
+}
+
+
+.platine{
+
+    border-left:8px solid #ffffff;
+
+}
+
+.platine:hover{
+
+    box-shadow:
+        0 0 35px rgba(255,255,255,.30);
+
+}
+
+
+.grenat{
+
+    border-left:8px solid #b51d36;
+
+}
+
+.grenat:hover{
+
+    box-shadow:
+        0 0 35px rgba(181,29,54,.35);
+
+}
+
+
+.emeraude{
+
+    border-left:8px solid #19c96d;
+
+}
+
+.emeraude:hover{
+
+    box-shadow:
+        0 0 35px rgba(25,201,109,.35);
+
+}
+
+
+.saphir{
+
+    border-left:8px solid #5f7dff;
+
+}
+
+.saphir:hover{
+
+    box-shadow:
+        0 0 40px rgba(95,125,255,.45);
+
+}
+  /*======================================================
+                FRISE DE PROGRESSION
+======================================================*/
+
+.progress-section{
+
+    margin-top:70px;
+
+}
+
+.progress-title{
+
+    text-align:center;
+
+    font-size:38px;
+
+    margin-bottom:50px;
+
+    font-weight:800;
+
+}
+
+
+.progress-line{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:0;
+
+    flex-wrap:nowrap;
+
+}
+
+
+/*============================
+      Ligne lumineuse
+============================*/
+
+.connector{
+
+    position:relative;
+
+    width:80px;
+
+    height:5px;
+
+    margin:0 6px;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #3557d9,
+            #7aa2ff
+        );
+
+    box-shadow:
+        0 0 18px rgba(80,120,255,.45);
+
+    overflow:hidden;
+
+}
+
+.connector::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120px;
+
+    top:0;
+
+    width:120px;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.75),
+            transparent
+        );
+
+    animation:flow 2.5s linear infinite;
+
+}
+
+.connector-final{
+
+    background:
+        linear-gradient(
+            90deg,
+            #4f7bff,
+            #79d5ff
+        );
+
+}
+
+
+/*============================
+        Badges
+============================*/
+
+.step{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:110px;
+
+    position:relative;
+
+}
+
+
+.step img{
+
+    width:74px;
+
+    height:74px;
+
+    object-fit:contain;
+
+    transition:.35s;
+
+    filter:
+        drop-shadow(0 0 12px rgba(255,255,255,.28));
+
+}
+
+
+.step span{
+
+    margin-top:12px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#c9d1ea;
+
+    text-align:center;
+
+}
+
+
+.step:hover img{
+
+    transform:
+        scale(1.12)
+        rotate(-6deg);
+
+}
+
+
+.step.active::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:94px;
+
+    height:94px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(95,130,255,.18),
+            transparent 70%
+        );
+
+    z-index:-1;
+
+}
+
+
+.step.final::before{
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(100,170,255,.35),
+            transparent 70%
+        );
+
+}
+
+
+/*============================
+      Bannière finale
+============================*/
+
+.ultimate-card{
+
+    position:relative;
+
+    margin-top:90px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    padding:50px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(40,70,170,.95),
+            rgba(18,30,70,.98)
+        );
+
+    border:1px solid rgba(120,155,255,.35);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.30);
+
+}
+
+
+.ultimate-glow{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(115,170,255,.18),
+            transparent 70%
+        );
+
+}
+
+
+.ultimate-content{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:40px;
+
+}
+
+
+.ultimate-badge{
+
+    width:170px;
+
+    filter:
+        drop-shadow(0 0 35px rgba(100,170,255,.45));
+
+}
+
+
+.ultimate-content h2{
+
+    font-size:44px;
+
+    margin:0 0 15px;
+
+    font-weight:900;
+
+}
+
+
+.ultimate-content p{
+
+    font-size:19px;
+
+    color:#d7e2ff;
+
+    line-height:1.7;
+
+}
+
+
+.ultimate-reward{
+
+    margin-top:28px;
+
+    display:inline-block;
+
+    padding:18px 32px;
+
+    border-radius:18px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #28b65d,
+            #169149
+        );
+
+    color:white;
+
+    font-size:34px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 0 30px rgba(25,185,90,.35);
+
+}
+
+
+.ultimate-text{
+
+    margin-top:18px;
+
+    opacity:.9;
+
+}
+
+
+/*============================
+      Animation
+============================*/
+
+@keyframes flow{
+
+    from{
+
+        left:-120px;
+
+    }
+
+    to{
+
+        left:120px;
+
+    }
+
+}
+  /*======================================================
+                CARTES D'INFORMATIONS
+======================================================*/
+
+.info-section{
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+
+    margin-top:80px;
+
+}
+
+.info-card{
+
+    position:relative;
+
+    padding:30px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,33,62,.95),
+            rgba(15,21,42,.95)
+        );
+
+    border:1px solid rgba(120,150,255,.15);
+
+    transition:.35s;
+
+    overflow:hidden;
+
+}
+
+.info-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5d84ff,
+            #78c2ff
+        );
+
+}
+
+.info-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#6e90ff;
+
+    box-shadow:
+        0 15px 35px rgba(35,70,255,.20);
+
+}
+
+.info-card h3{
+
+    margin:0 0 18px;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#ffffff;
+
+}
+
+.info-card p{
+
+    color:#c7d1eb;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+}
+
+
+/*======================================================
+                    FOOTER
+======================================================*/
+
+.reward-footer{
+
+    margin-top:80px;
+
+    padding-bottom:40px;
+
+    text-align:center;
+
+}
+
+.footer-line{
+
+    width:100%;
+
+    height:1px;
+
+    margin-bottom:25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(120,150,255,.35),
+            transparent
+        );
+
+}
+
+.reward-footer p{
+
+    color:#95a3cb;
+
+    font-size:15px;
+
+    letter-spacing:.05em;
+
+}
+
+
+/*======================================================
+                ANIMATIONS
+======================================================*/
+
+.reward-card{
+
+    animation:fadeUp .7s ease both;
+
+}
+
+.reward-card:nth-child(2){
+
+    animation-delay:.05s;
+
+}
+
+.reward-card:nth-child(3){
+
+    animation-delay:.10s;
+
+}
+
+.reward-card:nth-child(4){
+
+    animation-delay:.15s;
+
+}
+
+.reward-card:nth-child(5){
+
+    animation-delay:.20s;
+
+}
+
+.reward-card:nth-child(6){
+
+    animation-delay:.25s;
+
+}
+
+.reward-card:nth-child(7){
+
+    animation-delay:.30s;
+
+}
+
+.reward-card:nth-child(8){
+
+    animation-delay:.35s;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes glow{
+
+    0%{
+
+        box-shadow:
+            0 0 10px rgba(95,130,255,.15);
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 30px rgba(95,130,255,.35);
+
+    }
+
+    100%{
+
+        box-shadow:
+            0 0 10px rgba(95,130,255,.15);
+
+    }
+
+}
+
+.ultimate-card{
+
+    animation:glow 5s infinite ease-in-out;
+
+}
+  /*======================================================
+                    RESPONSIVE
+======================================================*/
+
+@media (max-width:1200px){
+
+    .reward-card{
+
+        grid-template-columns:110px 1fr 180px;
+
+        gap:20px;
+
+        padding:25px;
+
+    }
+
+    .reward-header h1{
+
+        font-size:48px;
+
+    }
+
+    .progress-line{
+
+        transform:scale(.92);
+
+        transform-origin:center;
+
+    }
+
+}
+
+
+@media (max-width:992px){
+
+    .reward-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+    .reward-header h1{
+
+        font-size:42px;
+
+    }
+
+    .reward-card{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .reward-left{
+
+        justify-content:center;
+
+    }
+
+    .reward-right{
+
+        justify-content:center;
+
+        margin-top:15px;
+
+    }
+
+    .ultimate-content{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .info-section{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .progress-line{
+
+        flex-wrap:wrap;
+
+        row-gap:25px;
+
+    }
+
+    .connector{
+
+        display:none;
+
+    }
+
+}
+
+
+@media (max-width:768px){
+
+    .reward-header h1{
+
+        font-size:36px;
+
+    }
+
+    .intro-card{
+
+        padding:25px;
+
+    }
+
+    .intro-card h2{
+
+        font-size:28px;
+
+    }
+
+    .intro-card p{
+
+        font-size:16px;
+
+    }
+
+    .reward-card{
+
+        padding:22px;
+
+    }
+
+    .grade-image{
+
+        width:90px;
+
+        height:90px;
+
+    }
+
+    .reward-middle h2{
+
+        font-size:28px;
+
+    }
+
+    .range{
+
+        font-size:16px;
+
+    }
+
+    .reward-price{
+
+        width:100%;
+
+        min-width:auto;
+
+        font-size:22px;
+
+    }
+
+    .progress-title{
+
+        font-size:30px;
+
+    }
+
+    .ultimate-card{
+
+        padding:35px 25px;
+
+    }
+
+    .ultimate-badge{
+
+        width:120px;
+
+    }
+
+    .ultimate-content h2{
+
+        font-size:32px;
+
+    }
+
+    .ultimate-reward{
+
+        font-size:28px;
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+}
+
+
+@media (max-width:480px){
+
+    .reward-header h1{
+
+        font-size:30px;
+
+    }
+
+    .reward-header .subtitle{
+
+        font-size:15px;
+
+    }
+
+    .reward-middle h2{
+
+        font-size:24px;
+
+    }
+
+    .description{
+
+        font-size:15px;
+
+    }
+
+    .reward-price{
+
+        font-size:20px;
+
+        padding:16px;
+
+    }
+
+    .step{
+
+        width:85px;
+
+    }
+
+    .step img{
+
+        width:58px;
+
+        height:58px;
+
+    }
+
+    .step span{
+
+        font-size:12px;
+
+    }
+
+    .info-card{
+
+        padding:22px;
+
+    }
+
+    .info-card h3{
+
+        font-size:20px;
+
+    }
+
+    .info-card p{
+
+        font-size:15px;
+
+    }
+
+    .reward-footer{
+
+        margin-top:60px;
+
+    }
+
+}
+
+
+/*======================================================
+                BARRE DE DÉFILEMENT
+======================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0b1020;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#3558d9;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#5379ff;
+
+}
+
+
+/*======================================================
+                    SÉLECTION
+======================================================*/
+
+::selection{
+
+    background:#557dff;
+
+    color:#fff;
+
+}
+
+}
