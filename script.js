@@ -37,6 +37,37 @@ function renderPodium(data) {
     `).join("");
 }
 
+function getRankBadge(saphirs) {
+
+  if (saphirs >= 85000)
+    return "legende";
+
+  if (saphirs >= 65000)
+    return "saphir";
+
+  if (saphirs >= 45000)
+    return "diamant";
+
+  if (saphirs >= 34000)
+    return "emeraude";
+
+  if (saphirs >= 25000)
+    return "rubis";
+
+  if (saphirs >= 17000)
+    return "platine";
+
+  if (saphirs >= 10000)
+    return "or";
+
+  if (saphirs >= 5000)
+    return "argent";
+
+  if (saphirs >= 2000)
+    return "bronze";
+
+  return null;
+}
 
 function renderTable(data) {
 
