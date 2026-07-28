@@ -85,8 +85,11 @@ function renderTable(data) {
   ${escapeHtml(x.client)}
 
   ${
-    x.saphirs >= 2000 && x.saphirs <= 4999
-      ? '<img src="/images/bronze.png" class="grade-badge" alt="Bronze">'
+    getRankBadge(x.saphirs)
+      ? `<img
+            src="/images/${getRankBadge(x.saphirs)}.png"
+            class="grade-badge"
+            alt="${getRankBadge(x.saphirs)}">`
       : ""
   }
 
