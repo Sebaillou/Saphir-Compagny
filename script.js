@@ -43,27 +43,21 @@ function getRankBadge(saphirs) {
     return "legende";
 
   if (saphirs >= 65000)
-    return "saphir";
-
-  if (saphirs >= 45000)
-    return "diamant";
-
-  if (saphirs >= 34000)
     return "emeraude";
 
-  if (saphirs >= 25000)
+  if (saphirs >= 45000)
     return "grenat";
 
-  if (saphirs >= 17000)
+  if (saphirs >= 34000)
     return "platine";
 
-  if (saphirs >= 10000)
+  if (saphirs >= 25000)
     return "or";
 
-  if (saphirs >= 5000)
+  if (saphirs >= 17000)
     return "argent";
 
-  if (saphirs >= 2000)
+  if (saphirs >= 10000)
     return "bronze";
 
     return "non-classe";
