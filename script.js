@@ -52,7 +52,7 @@ function getRankBadge(saphirs) {
     return "emeraude";
 
   if (saphirs >= 25000)
-    return "rubis";
+    return "grenat";
 
   if (saphirs >= 17000)
     return "platine";
