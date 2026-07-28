@@ -40,7 +40,7 @@ function renderPodium(data) {
 function getRankBadge(saphirs) {
 
   if (saphirs >= 85000)
-    return "legende";
+    return "saphir";
 
   if (saphirs >= 65000)
     return "emeraude";
